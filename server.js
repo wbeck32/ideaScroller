@@ -1,11 +1,13 @@
-const http = require('http');
-const app = require('./src/app');
+const express = require('express');
+const app = express();
+const morgan = require('morgan');
+const errorHandler = require('./src/error-handler')();
+const routes = require('./src/routes');
 
-const server = http.createServer(app);
+app.use(morgan('dev'));
+app.use(express.static('public'));
+app.use('/', routes);
 
-const port = 3000;
+(app.use)(errorHandler);
 
-server.listen(port, () => {
-  // eslint-disable-next-line
-	console.log('server up and running on', server.address().port);
-});
+app.listen(3000, () => console.log('Server is running at http://localhost:3000'));

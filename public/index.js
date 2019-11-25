@@ -8,5 +8,6 @@ const randomizer = () => {
 
 const ideas = () => {
   console.log(123);
+  return 'how2333';
 };
 ele.innerText = ideas();
